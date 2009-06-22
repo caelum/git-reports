@@ -1,0 +1,7 @@
+= caelum-git-reports
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Caue Guerra. See LICENSE for details.
