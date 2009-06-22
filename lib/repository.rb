@@ -1,30 +1,32 @@
+require 'date'
+
 class Repository
   attr_accessor :name, :dir, :url
   attr_reader :log, :commiters
-  
+
   def initialize(name, dir)
     @name = name
     @dir = dir
   end
-  
+
   def clone
     `cd #{dir} && git clone #{url} > /dev/null 2>&1`
   end
-  
+
   def pull
     `cd #{dir} && git pull`
   end
-  
+
   def log(from = Date.new, to = Date.new)
     start_date = "#{Date.new - from} days ago"
     end_date = "#{Date.new - to} days ago"
     @log = `cd #{dir} && git log --since="#{start_date}" --until="#{end_date} days ago" --pretty=tformat:"%n%an" --numstat --ignore-space-change`
   end
-  
+
   def calculate_stats
     regexp = Regexp.new('\A((\w+\s?)+)\s*((([\d-]+\s+[\d-]+.*)*\s)*)')
     @log[0] = '' unless @log == ""
-    
+
     match = regexp.match(@log)
     @commiters = Hash.new
     while !match.nil?
