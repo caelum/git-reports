@@ -18,8 +18,7 @@ class CaelumGitReports
     @stats[repository_name] = Hash.new
     repository = @repositories[repository_name]
     repository.pull
-    repository.log(from, to)
-    repository.calculate_stats
+    repository.calculate_stats(from, to)
     for commiter in repository.commiters.keys
       @stats[repository_name][commiter] = repository.commiters[commiter]
     end

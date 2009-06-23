@@ -2,7 +2,7 @@ require 'date'
 
 class Repository
   attr_accessor :name, :dir, :url
-  attr_reader :log, :commiters
+  attr_reader :commiters
 
   def initialize(name, dir)
     @name = name
@@ -17,17 +17,19 @@ class Repository
     `cd #{dir} && git pull`
   end
 
-  def log(from = Date.new, to = Date.new)
+  def extract_log(from = Date.new, to = Date.new)
     start_date = "#{Date.new - from} days ago"
     end_date = "#{Date.new - to} days ago"
-    @log = `cd #{dir} && git log --since="#{start_date}" --until="#{end_date} days ago" --pretty=tformat:"%n%an" --numstat --ignore-space-change`
+    log = `cd #{dir} && git log --since="#{start_date}" --until="#{end_date} days ago" --pretty=tformat:"%n%an" --numstat --ignore-space-change`
+    return log
   end
 
-  def calculate_stats
+  def calculate_stats(from = Date.new, to = Date.new)
     regexp = Regexp.new('\A((\w+\s?)+)\s*((([\d-]+\s+[\d-]+.*)*\s)*)')
-    @log[0] = '' unless @log == ""
+    log = self.extract_log(from, to)
+    log[0] = '' unless log == ""
 
-    match = regexp.match(@log)
+    match = regexp.match(log)
     @commiters = Hash.new
     while !match.nil?
       email = match[1].gsub("\n", "")
@@ -42,8 +44,8 @@ class Repository
         item = commit_information.split(/\s+/)
         @commiters[email] += item[0].to_i + item[1].to_i
       end
-      @log.gsub!(regexp,"")
-      match = regexp.match(@log)
+      log.gsub!(regexp,"")
+      match = regexp.match(log)
     end
   end
 end

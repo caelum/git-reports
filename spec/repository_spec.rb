@@ -6,9 +6,8 @@ describe "Repository" do
 
   it "should calculate stats" do
 
-    class Repository
-      def log
-        @log = "
+
+    log = "
 User1
 
 5 3 File1
@@ -24,11 +23,9 @@ User2
 7 0 File1
 0 3 File2
 "
-      end
-    end
 
     repository = Repository.new("SampleRepository","ArbitraryDirectory")
-    repository.log
+    repository.stub(:extract_log).and_return(log)
     repository.calculate_stats
     repository.commiters['User1'].should be(18)
     repository.commiters['User2'].should be(10)
