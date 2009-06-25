@@ -28,6 +28,7 @@ class CaelumGitReports
 
   def extract_all_stats(from = Date.new, to = Date.new)
     for repository in @repositories.values
+      yield repository.name if block_given?
       extract_stats(repository.name, from, to)
     end
   end

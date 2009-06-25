@@ -13,7 +13,9 @@ if (workdir and days)
   puts "Git stats for repositories under #{workdir}"
 
   reporter = CaelumGitReports.new(workdir)
-  reporter.extract_all_stats(Date.new - days)
+  reporter.extract_all_stats(Date.new - days) do |name|
+    puts "Checking #{name}..."
+  end
 
   repository_html = File.new("repositories.html", "w")
   repository_html.puts HtmlReport.new(reporter.repository_stats, "repositories", days.to_s).generate
