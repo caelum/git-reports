@@ -11,13 +11,16 @@ include Template
   end
 
   def generate
-    report = ""
-    report << Template::HEAD.gsub("%TYPE%", @type).gsub("%DAYS%", @days)
+    report = ''
+    report << Template::HEAD.gsub('%TYPE%', @type).gsub('%DAYS%', @days)
     for major in @stats.keys
-      report << Template::MAJOR_HEAD.gsub("%MAJOR%", major)
+      report << Template::MAJOR_HEAD.gsub('%MAJOR%', major)
+      sum = 0
       for minor, lines in @stats[major]
-        report << Template::MINOR.gsub("%MINOR%", minor).gsub("%LINES%", lines.to_s)
+        report << Template::MINOR.gsub('%MINOR%', minor).gsub('%LINES%', lines.to_s)
+        sum += lines
       end
+      report << Template::MINOR.gsub('%MINOR%', '.').gsub('%LINES%', sum.to_s)
       report << Template::MAJOR_TAIL
     end
     report << Template::TAIL
