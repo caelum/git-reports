@@ -15,11 +15,11 @@ if (workdir)
   reporter.extract_all_stats(Date.new - 365)
 
   repository_html = File.new("repositories.html", "w")
-  HtmlReport.new(reporter.repository_stats, repository_html)
+  repository_html.puts HtmlReport.new(reporter.repository_stats, "repositories").generate
   repository_html.close
 
   commiter_html = File.new("commiters.html", "w")
-  HtmlReport.new(reporter.commiter_stats, commiter_html)
+  commiter_html.puts HtmlReport.new(reporter.commiter_stats, "commiters").generate
   commiter_html.close
 
 end
