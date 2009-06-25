@@ -6,3 +6,4 @@ pkg
 .project
 .loadpath
 *~
+*.html
