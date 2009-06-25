@@ -7,6 +7,7 @@ HEAD = <<-HEADER
   </head>
   <body>
   <h2>Statistics for %TYPE%</h2>
+  <p>For the last %DAYS% days</p>
 HEADER
 
 TAIL = <<-TAIL
