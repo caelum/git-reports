@@ -5,6 +5,7 @@ $LOAD_PATH << './../lib'
 
 require 'caelum-git-reports'
 require 'date'
+require 'html_report'
 
 workdir = ARGV[0]
 if (workdir)
@@ -13,22 +14,12 @@ if (workdir)
   reporter = CaelumGitReports.new(workdir)
   reporter.extract_all_stats(Date.new - 365)
 
-  for repository in reporter.repository_stats.keys
-    puts "[Project #{repository}]"
-    for commiter, lines in reporter.repository_stats[repository]
-      puts "\t#{commiter}: #{lines}"
-    end
-    puts
-  end
+  repository_html = File.new("repositories.html", "w")
+  HtmlReport.new(reporter.repository_stats, repository_html)
+  repository_html.close
 
-  puts
-
-  for commiter in reporter.commiter_stats.keys
-    puts "[Commiter #{commiter}]"
-    for repository, lines in reporter.commiter_stats[commiter]
-      puts "\t#{repository}: #{lines}"
-    end
-    puts
-  end
+  commiter_html = File.new("commiters.html", "w")
+  HtmlReport.new(reporter.commiter_stats, commiter_html)
+  commiter_html.close
 
 end
