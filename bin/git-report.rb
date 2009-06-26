@@ -17,11 +17,13 @@ if (workdir and days)
     puts "Checking #{name}..."
   end
 
-  repository_html = File.new("repositories.html", "w")
+  now = Time.now.strftime("%Y.%m.%d")
+
+  repository_html = File.new("repositories-#{now}-#{days}.html", "w")
   repository_html.puts HtmlReport.new(reporter.repository_stats, "repositories", days).generate
   repository_html.close
 
-  commiter_html = File.new("commiters.html", "w")
+  commiter_html = File.new("commiters-#{now}-#{days}.html", "w")
   commiter_html.puts HtmlReport.new(reporter.commiter_stats, "commiters", days).generate
   commiter_html.close
 
