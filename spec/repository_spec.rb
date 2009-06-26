@@ -5,8 +5,6 @@ require 'repository'
 describe "Repository" do
 
   it "should calculate stats" do
-
-
     log = "
 User1
 
@@ -29,7 +27,26 @@ User2
     repository.calculate_stats
     repository.commiters['User1'].should be(18)
     repository.commiters['User2'].should be(10)
+  end
 
+  it "should generate a summary" do
+    delimiter = "#{200.chr}@@@"
+    log = "User 1
+12345
+Message number 1#{delimiter}
+User 2
+12344
+Message number 2#{delimiter}
+"
+    repository = Repository.new("SampleRepository","ArbitraryDirectory")
+    repository.stub(:extract_log_with_messages).and_return(log)
+    repository.generate_summary
+    repository.summary['12345'][:commiter].should eql("User 1")
+    repository.summary['12345'][:time].should eql(Time.at(12345))
+    repository.summary['12345'][:message].should eql("Message number 1")
+    repository.summary['12344'][:commiter].should eql("User 2")
+    repository.summary['12344'][:time].should eql(Time.at(12344))
+    repository.summary['12344'][:message].should eql("Message number 2")
   end
 
 end
