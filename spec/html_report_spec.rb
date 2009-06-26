@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 require 'repository'
 require 'html_report'
+require 'time'
 
 describe "HtmlReport" do
 
@@ -13,8 +14,7 @@ describe "HtmlReport" do
     stats['Major2'] = Hash.new
     stats['Major2']['Minor2'] = 222
     stats['Major2']['Minor3'] = 333
-    @report = HtmlReport.new(stats, "repositories!", "123").generate
-    puts @report
+    @report = HtmlReport.new(stats, "repositories!", 123).generate
   end
 
   it "should have a title" do
@@ -22,7 +22,9 @@ describe "HtmlReport" do
   end
 
   it "should specify the considered date" do
-    @report.should include("For the last 123 days")
+    from = (Time.now - 123*60*60*24).strftime("%Y.%m.%d")
+    to = Time.now.strftime("%Y.%m.%d")
+    @report.should include("From #{from} to #{to}")
   end
 
   it "should include all majors" do
