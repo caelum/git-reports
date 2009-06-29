@@ -5,11 +5,12 @@ class HtmlSummary
 
 include Template
 
-  def initialize(summaries, title, days)
+  def initialize(summaries, title, days, max_commits)
     @summaries = summaries
     @title = title
     @days = days
     @summary = Hash.new
+    @max_commits = max_commits
   end
 
   def generate
@@ -21,7 +22,7 @@ include Template
     report << Template::HEAD.gsub('%TITLE%', @title).gsub("%FROM%", from).gsub('%TO%', to)
     merge
 
-    for commit in @summary.keys.sort.reverse
+    for commit in @summary.keys.sort.reverse[0..@max_commits-1]
       report << Template::COMMIT.gsub("%REPOSITORY%", @summary[commit][:repository] || "nil").
                                  gsub("%MESSAGE%", @summary[commit][:message] || "nil").
                                  gsub("%COMMITER%", @summary[commit][:commiter] || "nil").

@@ -10,11 +10,12 @@ describe "HtmlSummary" do
     stats = Hash.new
     stats['Repo1'] = Hash.new
     stats['Repo1']['1'] = {:commiter => "Commiter 1", :time => "Time 1", :message => "Message 1"}
-    stats['Repo1']['3'] = {:commiter => "Commiter 1", :time => "Time 3", :message => "Message 3"}
+    stats['Repo1']['3'] = {:commiter => "Commiter 2", :time => "Time 3", :message => "Message 3"}
+    stats['Repo1']['5'] = {:commiter => "Commiter 3", :time => "Time 5", :message => "Message 5"}
     stats['Repo2'] = Hash.new
-    stats['Repo2']['2'] = {:commiter => "Commiter 2", :time => "Time 2", :message => "Message 2"}
-    stats['Repo2']['4'] = {:commiter => "Commiter 2", :time => "Time 4", :message => "Message 4"}
-    @report = HtmlSummary.new(stats, "Summary!", 123).generate
+    stats['Repo2']['2'] = {:commiter => "Commiter 3", :time => "Time 2", :message => "Message 2"}
+    stats['Repo2']['4'] = {:commiter => "Commiter 3", :time => "Time 4", :message => "Message 4"}
+    @report = HtmlSummary.new(stats, "Summary!", 123, 4).generate
   end
 
   it "should have a title" do
@@ -27,28 +28,31 @@ describe "HtmlSummary" do
     @report.should include("From #{from} to #{to}")
   end
 
-  it "should include all repositories" do
+  it "should include the repository name" do
     @report.should include("Repo1")
     @report.should include("Repo2")
   end
 
-  it "should include all messages" do
-    @report.should include("Message 1")
+  it "should include the commit message" do
+    @report.should_not include("Message 1")
     @report.should include("Message 2")
     @report.should include("Message 3")
     @report.should include("Message 4")
+    @report.should include("Message 5")
   end
 
-  it "should include all commiters" do
-    @report.should include("Commiter 1")
+  it "should include commiter's name" do
+    @report.should_not include("Commiter 1")
     @report.should include("Commiter 2")
+    @report.should include("Commiter 3")
   end
 
   it "should include the time and date for each commit" do
-    @report.should include("Time 1")
+    @report.should_not include("Time 1")
     @report.should include("Time 2")
     @report.should include("Time 3")
     @report.should include("Time 4")
+    @report.should include("Time 5")
   end
 
 end

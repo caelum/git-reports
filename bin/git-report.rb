@@ -10,6 +10,11 @@ require 'html_summary'
 
 workdir = ARGV[0]
 days = ARGV[1].to_i
+max_commits = ARGV[2].to_i
+if (max_commits == 0)
+  max_commits = 50
+end
+
 if (workdir and days)
   puts "Git stats for repositories under #{workdir}"
 
@@ -29,7 +34,7 @@ if (workdir and days)
   commiter_html.close
 
   summary_html = File.new("summary-#{now}-#{days}.html", "w")
-  summary_html.puts HtmlSummary.new(reporter.repository_summaries, "Summary", days).generate
+  summary_html.puts HtmlSummary.new(reporter.repository_summaries, "Summary", days, max_commits).generate
   summary_html.close
 
 end
