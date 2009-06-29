@@ -1,16 +1,17 @@
 require 'repository'
 require 'date'
 
-class CaelumGitReports
+class Reporter
   attr_accessor :work_dir
   attr_reader :repositories
-  attr_accessor :repository_stats, :commiter_stats
+  attr_accessor :repository_stats, :commiter_stats, :repository_summaries
 
   def initialize(work_dir)
     @work_dir = work_dir
     @repositories = Hash.new
     @repository_stats = Hash.new
     @commiter_stats = Hash.new
+    @repository_summaries = Hash.new
     discover_repositories
     initialize_repositories
   end
@@ -20,6 +21,8 @@ class CaelumGitReports
     repository = @repositories[repository_name]
     repository.pull
     repository.calculate_stats(from, to)
+    repository.generate_summary(from, to)
+    @repository_summaries[repository_name] = repository.summary
     for commiter in repository.commiters.keys
       @repository_stats[repository_name][commiter] = repository.commiters[commiter]
     end

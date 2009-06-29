@@ -3,10 +3,10 @@ module Template
 HEAD = <<-HEADER
 <html>
   <head>
-    <title>Statistics for %TYPE%</title>
+    <title>%TITLE%</title>
   </head>
   <body>
-  <h2>Statistics for %TYPE%</h2>
+  <h2>%TITLE%</h2>
   <p>From %FROM% to %TO%</p>
 HEADER
 
@@ -35,4 +35,12 @@ MINOR = <<-MINOR
       </tr>
 MINOR
 
+COMMIT = <<-COMMIT
+    <br>
+    <table border=1; width="500px">
+      <tr><td width="350px"><strong>%REPOSITORY%</strong></td></tr>
+      <tr><td width="350px">%MESSAGE%</td></tr>
+      <tr><td width="350px">by %COMMITER% at %TIMEDATE%</td></tr>
+    </table>
+COMMIT
 end

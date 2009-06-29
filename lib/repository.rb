@@ -41,7 +41,7 @@ class Repository
       for info in commit.split("\n")
         temp.push info unless info == ""
       end
-      @summary[temp[1]] = {:commiter => temp[0], :time => Time.at(temp[1].to_i), :message => temp[2]}
+      @summary[temp[1]] = {:commiter => temp[0], :time => Time.at(temp[1].to_i), :message => temp[2]} if temp[1]
     end
   end
 

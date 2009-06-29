@@ -5,9 +5,9 @@ class HtmlReport
 
 include Template
 
-  def initialize(stats, type, days)
+  def initialize(stats, title, days)
     @stats = stats
-    @type = type
+    @title = title
     @days = days
   end
 
@@ -17,7 +17,7 @@ include Template
     from = (Time.now - @days*60*60*24).strftime("%Y.%m.%d")
     to = Time.now.strftime("%Y.%m.%d")
 
-    report << Template::HEAD.gsub('%TYPE%', @type).gsub("%FROM%", from).gsub('%TO%', to)
+    report << Template::HEAD.gsub('%TITLE%', @title).gsub("%FROM%", from).gsub('%TO%', to)
     for major in @stats.keys
       report << Template::MAJOR_HEAD.gsub('%MAJOR%', major)
       sum = 0

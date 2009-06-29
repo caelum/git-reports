@@ -14,7 +14,7 @@ describe "HtmlReport" do
     stats['Major2'] = Hash.new
     stats['Major2']['Minor2'] = 222
     stats['Major2']['Minor3'] = 333
-    @report = HtmlReport.new(stats, "repositories!", 123).generate
+    @report = HtmlReport.new(stats, "Statistics for repositories!", 123).generate
   end
 
   it "should have a title" do
