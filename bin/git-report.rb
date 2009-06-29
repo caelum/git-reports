@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH << './lib'
-$LOAD_PATH << './../lib'
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
 require 'reporter'
 require 'date'
