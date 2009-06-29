@@ -17,9 +17,9 @@ TAIL
 
 MAJOR_HEAD = <<-MAJOR
     <br>
-    <table border=1; width="500px">
+    <table border=1; width="600px">
       <tr>
-        <td width="350px"><strong>%MAJOR%</strong></td>
+        <td width="450px"><strong>%MAJOR%</strong></td>
         <td width="150px"><strong>Lines</strong></td>
       </tr>
 MAJOR
@@ -37,10 +37,10 @@ MINOR
 
 COMMIT = <<-COMMIT
     <br>
-    <table border=1; width="500px">
-      <tr><td width="350px"><strong>%REPOSITORY%</strong></td></tr>
-      <tr><td width="350px">%MESSAGE%</td></tr>
-      <tr><td width="350px">by %COMMITER% at %TIMEDATE%</td></tr>
+    <table border=1; width="600px">
+      <tr><td><strong>%REPOSITORY%</strong></td></tr>
+      <tr><td>%MESSAGE%</td></tr>
+      <tr><td><strong>by</strong> %COMMITER% <strong>at</strong> %TIMEDATE%</td></tr>
     </table>
 COMMIT
 end
