@@ -35,6 +35,7 @@ include Template
   end
 
   def merge
+    # List all timestamps and sort
     timestamps = []
     for repository in @summaries.keys
       for timestamp in @summaries[repository].keys
@@ -43,6 +44,7 @@ include Template
     end
     timestamps.sort!
 
+    # Put commits from all repositories together, ordered by their timestamps
     i = 0
     for timestamp in timestamps
       for repository in @summaries.keys
