@@ -7,3 +7,4 @@ pkg
 .loadpath
 *~
 *.html
+*.gem

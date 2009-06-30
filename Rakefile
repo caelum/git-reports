@@ -4,11 +4,11 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "caelum-git-reports"
+    gem.name = "git_reports"
     gem.summary = "Git report tool"
     gem.email = "caue.guerra@gmail.com"
-    gem.homepage = "http://github.com/caueguerra/caelum-git-reports"
-    gem.authors = ["Caue Guerra"]
+    gem.homepage = "http://github.com/caelum/git-reports"
+    gem.authors = ["Caue Guerra", "Pedro Matiello"]
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 
