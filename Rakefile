@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "git_reports"
+    gem.name = "git-reports"
     gem.summary = "Git report tool"
     gem.email = "caue.guerra@gmail.com"
     gem.homepage = "http://github.com/caelum/git-reports"
