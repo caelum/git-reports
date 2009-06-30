@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "caelum-git-reports"
-    gem.summary = %Q{TODO}
+    gem.summary = "Git report tool"
     gem.email = "caue.guerra@gmail.com"
     gem.homepage = "http://github.com/caueguerra/caelum-git-reports"
     gem.authors = ["Caue Guerra"]
@@ -20,6 +20,7 @@ require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.libs << 'lib' << 'spec'
   spec.spec_files = FileList['spec/**/*_spec.rb']
+  spec.spec_opts = ["--colour --format specdoc"]
 end
 
 Spec::Rake::SpecTask.new(:rcov) do |spec|
