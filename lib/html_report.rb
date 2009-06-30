@@ -18,10 +18,10 @@ include Template
     to = Time.now.strftime("%Y.%m.%d")
 
     report << Template::HEAD.gsub('%TITLE%', @title).gsub("%FROM%", from).gsub('%TO%', to)
-    for major in @stats.keys
+    for major in @stats.keys.sort
       report << Template::MAJOR_HEAD.gsub('%MAJOR%', major)
       sum = 0
-      for minor, lines in @stats[major]
+      for minor, lines in @stats[major].sort
         report << Template::MINOR.gsub('%MINOR%', minor).gsub('%LINES%', lines.to_s)
         sum += lines
       end
