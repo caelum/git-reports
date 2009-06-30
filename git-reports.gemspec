@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{git-reports}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Caue Guerra", "Pedro Matiello"]
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/git-report.rb",
+     "git-reports.gemspec",
      "lib/html_report.rb",
      "lib/html_summary.rb",
      "lib/reporter.rb",
@@ -36,14 +37,14 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/caelum/git-reports}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.3}
+  s.rubygems_version = %q{1.3.4}
   s.summary = %q{Git report tool}
   s.test_files = [
-    "spec/html_report_spec.rb",
-     "spec/html_summary_spec.rb",
-     "spec/reporter_spec.rb",
+    "spec/reporter_spec.rb",
      "spec/repository_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/html_report_spec.rb",
+     "spec/html_summary_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
