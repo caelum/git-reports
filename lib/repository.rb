@@ -5,10 +5,11 @@ class Repository
   attr_accessor :name, :dir, :url
   attr_reader :commiters, :summary
 
-  def initialize(name, dir)
+  def initialize(name, dir, translations)
     @name = name
     @dir = dir
     @delimiter = "#{200.chr}@@@"
+    @translations = translations
   end
 
   def clone
@@ -41,6 +42,9 @@ class Repository
       for info in commit.split("\n")
         temp.push info unless info == ""
       end
+      if (@translations[temp[0]])
+        temp[0] = @translations[temp[0]]
+      end
       @summary[temp[1]] = {:commiter => temp[0], :time => Time.at(temp[1].to_i), :message => temp[2]} if temp[1]
     end
   end
@@ -54,6 +58,9 @@ class Repository
     @commiters = Hash.new
     while !match.nil?
       email = match[1].gsub("\n", "")
+      if (@translations[email])
+        email = @translations[email]
+      end
 
       if @commiters[email].nil?
         @commiters[email] = 0

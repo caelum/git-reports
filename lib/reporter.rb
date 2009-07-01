@@ -6,12 +6,13 @@ class Reporter
   attr_reader :repositories
   attr_accessor :repository_stats, :commiter_stats, :repository_summaries
 
-  def initialize(work_dir)
+  def initialize(work_dir, translations)
     @work_dir = work_dir
     @repositories = Hash.new
     @repository_stats = Hash.new
     @commiter_stats = Hash.new
     @repository_summaries = Hash.new
+    @translations = translations
     discover_repositories
     initialize_repositories
   end
@@ -51,7 +52,7 @@ class Reporter
 
   def initialize_repositories
     for repository_name in @repositories_names
-      repository = Repository.new(repository_name, @work_dir + "/#{repository_name}")
+      repository = Repository.new(repository_name, @work_dir + "/#{repository_name}", @translations)
       @repositories[repository_name] = repository
     end
   end
