@@ -1,7 +1,3 @@
 = caelum-git-reports
 
-Description goes here.
-
-== Copyright
-
-Copyright (c) 2009 Caue Guerra. See LICENSE for details.
+Please check our {Wiki}[http://wiki.github.com/caelum/git-reports] for more information.
