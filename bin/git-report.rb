@@ -50,5 +50,9 @@ if (workdir and days > 0)
   summary_html.puts HtmlSummary.new(reporter.repository_summaries, "Summary", days, max_commits).generate
   summary_html.close
 else
-  puts "Usage: git-report.rb <path to repositories> <number of days to look back> [<number of commits in summary>]"
+  puts "caelum-git-reports"
+  puts "Usage:"
+  puts "git-report.rb <path to repositories> <number of days to look back>"
+  puts "git-report.rb <path to repositories> <number of days to look back> <number of commits in summary>"
+  puts "git-report.rb <path to repositories> <number of days to look back> <number of commits in summary> <yaml file for commiter name translation>"
 end
