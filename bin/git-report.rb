@@ -41,7 +41,7 @@ if (workdir and days > 0)
   repository_html.close
 
   # Commiter stats
-  commiter_html = File.new("commiters-#{now}-#{days}.html", "w")
+  commiter_html = File.new("committers-#{now}-#{days}.html", "w")
   commiter_html.puts HtmlReport.new(reporter.commiter_stats, "Statistics for commiters", days).generate
   commiter_html.close
 
