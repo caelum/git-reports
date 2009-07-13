@@ -40,10 +40,10 @@ if (workdir and days > 0)
   repository_html.puts HtmlReport.new(reporter.repository_stats, "Statistics for repositories", days).generate
   repository_html.close
 
-  # Commiter stats
-  commiter_html = File.new("committers-#{now}-#{days}.html", "w")
-  commiter_html.puts HtmlReport.new(reporter.commiter_stats, "Statistics for commiters", days).generate
-  commiter_html.close
+  # Committer stats
+  committer_html = File.new("committers-#{now}-#{days}.html", "w")
+  committer_html.puts HtmlReport.new(reporter.commiter_stats, "Statistics for committers", days).generate
+  committer_html.close
 
   # Commit summary
   summary_html = File.new("summary-#{now}-#{days}.html", "w")
@@ -54,5 +54,5 @@ else
   puts "Usage:"
   puts "git-report.rb <path to repositories> <number of days to look back>"
   puts "git-report.rb <path to repositories> <number of days to look back> <number of commits in summary>"
-  puts "git-report.rb <path to repositories> <number of days to look back> <number of commits in summary> <yaml file for commiter name translation>"
+  puts "git-report.rb <path to repositories> <number of days to look back> <number of commits in summary> <yaml file for committer name translation>"
 end
