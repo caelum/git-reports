@@ -1,3 +1,17 @@
 = caelum-git-reports
 
+== Summary
+
+@git-reports@ is a statistics generator for git repositories.
+
+== Authors
+
+{Cauê Guerra}[http://github.com/caueguerra]
+{Pedro Matiello}[http://github.com/pmatiello]
+
+All work was sponsored by {Caelum}[http://www.caelum.com.br/]. You can find more open-source
+software by Caelum {here}[http://github.com/caelum].
+
+== Installation and Usage 
+
 Please check our {Wiki}[http://wiki.github.com/caelum/git-reports] for more information.
