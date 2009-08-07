@@ -2,7 +2,7 @@
 
 == Summary
 
-[+git-reports+] is a statistics generator for git repositories.
+[\+git-reports+] is a statistics generator for git repositories.
 
 == Authors
 
