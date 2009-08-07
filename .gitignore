@@ -9,3 +9,4 @@ pkg
 *.html
 *.gem
 *.yml
+.buildpath
